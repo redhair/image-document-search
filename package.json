@@ -3,6 +3,6 @@
   "version": "0.0.1",
   "scripts": {
     "install": "(cd server && npm install) & (cd client && npm install)",
-    "start": "(cd server && npm run start) & (cd client && npm run start)"
+    "start": "(cd server && npm run start)"
   }
 }
