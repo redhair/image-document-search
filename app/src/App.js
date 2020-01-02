@@ -13,6 +13,7 @@ import Image from './components/Image';
 import * as s3 from './api/s3.js'
 import { createImage } from './api/images.js';
 import './App.css';
+
 const algoliasearch = require('algoliasearch');
 const client = algoliasearch(process.env.REACT_APP_ALGOLIA_KEY, process.env.REACT_APP_ALGOLIA_SEARCH_ONLY);
 const AutocompleteSearchBox = connectSearchBox(() => null);
@@ -81,7 +82,7 @@ function App() {
             });
         }}>
           {({ getRootProps, getInputProps }) => (
-            <section>
+            <section className="Dropzone">
               <div {...getRootProps()}>
                 <input {...getInputProps()} />
                 <p>Drag 'n' drop some files here, or click to select files</p>

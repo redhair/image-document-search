@@ -1,11 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import { render } from '@testing-library/react';
-import Image from '.';
+import Image from './Image';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-      <Image src="" alt="" />
+      <Image src="" alt="" />,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
@@ -14,7 +15,7 @@ it('renders without crashing', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-      <Image src="test.jpg" alt="Test" />
+      <Image src="test.jpg" alt="Test" />,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
@@ -23,7 +24,7 @@ it('renders without crashing', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-      <Image src="test.jpg" alt="Test" withHover={true} />
+      <Image src="test.jpg" alt="Test" withHover={true} />,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
