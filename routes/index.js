@@ -13,11 +13,6 @@ const s3 = new AWS.S3({
   signatureVersion: 'v4'
 });
 
-
-router.get('/', function(req, res, next) {
-  res.json({ title: 'Hi' });
-});
-
 router.get('/getS3Url', (req, res, next) => {
   let key;
   let bucket = 'image-document-search';
