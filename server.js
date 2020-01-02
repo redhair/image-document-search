@@ -11,9 +11,6 @@ const logger = require('morgan');
 const path = require('path');
 const port = 3001;
 const sslport = 3443;
-
-dotenv.load();
-
 const routes = require('./routes/index');
 const app = express();
 
