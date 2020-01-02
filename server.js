@@ -9,8 +9,7 @@ const fs = require('fs');
 const https = require('https');
 const logger = require('morgan');
 const path = require('path');
-const port = 3001;
-const sslport = 3443;
+const sslport = process.env.PORT || 5000;
 const routes = require('./routes/index');
 const app = express();
 
