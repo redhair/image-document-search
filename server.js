@@ -32,7 +32,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'app/build')));
 
 app.get('/getS3Url', (req, res, next) => {
   let key;
@@ -74,7 +74,7 @@ app.post('/images', (req, res, next) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname+'/build/index.html'));
 });
 
 app.listen(port, function() {
