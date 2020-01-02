@@ -10,6 +10,7 @@ import Modal from 'react-responsive-modal';
 import Container from '@material-ui/core/Container';
 import Autocomplete from './components/Autocomplete';
 import Image from './components/Image';
+import LoadingBlock from './components/LoadingBlock'
 import * as s3 from './api/s3.js'
 import { createImage } from './api/images.js';
 import './App.css';
@@ -68,28 +69,33 @@ function App() {
       </InstantSearch>
       <InstantSearch indexName="image-document-search" searchClient={client}>
         <AutocompleteSearchBox defaultRefinement={query} />
-        <Dropzone onDrop={acceptedFiles => {
-          setLoading(true);
-          s3.uploadImage(acceptedFiles[0])
-            .then(uploaded => {
-              return createImage(uploaded)
-                .then(console.log)
-                .catch(console.error);
-            })
-            .catch(console.error)
-            .finally(() => {
-              setLoading(false);
-            });
-        }}>
-          {({ getRootProps, getInputProps }) => (
-            <section className="Dropzone">
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <p>Drag 'n' drop some files here, or click to select files</p>
-              </div>
-            </section>
-          )}
-        </Dropzone>
+        {loading ? (
+          <LoadingBlock />
+        ) : (
+          <Dropzone onDrop={acceptedFiles => {
+            setLoading(true);
+            s3.uploadImage(acceptedFiles[0])
+              .then(uploaded => {
+                return createImage(uploaded)
+                  .then(console.log)
+                  .catch(console.error)
+                  .finally(() => {
+                    setLoading(false);
+                  });
+              })
+              .catch(console.error)
+          }}>
+            {({ getRootProps, getInputProps }) => (
+              <section className="Dropzone">
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <p>Drag 'n' drop some files here, or click to select files</p>
+                </div>
+              </section>
+            )}
+          </Dropzone>
+        )}
+        
         <Hits hitComponent={Hit} />
       </InstantSearch>
     </Container>
