@@ -13,10 +13,6 @@ const s3 = new AWS.S3({
   signatureVersion: 'v4'
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
-
 router.get('/getS3Url', (req, res, next) => {
   let key;
   let bucket = 'image-document-search';
@@ -74,6 +70,10 @@ router.post('/images', (req, res, next) => {
       res.json({content})
     });
   }).catch(next)
+});
+
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
 module.exports = router;
