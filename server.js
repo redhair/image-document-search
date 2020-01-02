@@ -14,11 +14,10 @@ const sslport = 3443;
 
 dotenv.load();
 
-
 const routes = require('./routes/index');
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(logger('dev'));
 app.use(cors());
 app.use(compression());
