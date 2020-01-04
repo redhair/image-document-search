@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render } from '@testing-library/react';
-import Autocomplete from '.';
-import { InstantSearch } from 'react-instantsearch-dom';
+import Searchbox from '.';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -10,9 +8,7 @@ it('renders without crashing', () => {
   const client = algoliasearch(process.env.REACT_APP_ALGOLIA_KEY, process.env.REACT_APP_ALGOLIA_SEARCH_ONLY);
 
   ReactDOM.render(
-    <InstantSearch indexName="image-document-search" searchClient={client}>
-      <Autocomplete onSuggestionSelected={() => {}} onSuggestionCleared={() => {}} />
-    </InstantSearch>,
+    <Searchbox client={client} query="" onSuggestionCleared={() => {}} onSuggestionSelected={() => {}} />,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
